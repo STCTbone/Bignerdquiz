@@ -9,32 +9,33 @@
 import UIKit
 
 class QuizViewController: UIViewController {
+    @IBOutlet var questionLabel: UILabel
+    @IBOutlet var answerLabel: UILabel
+    
+    var currentQuestionIndex: Int = 0
+    let questions: String[] = ["From what is congac made?", "What is 7+7", "What is the capital of Vermont?"]
+    let answers: String[] = ["Grapes", "14", "Montpelier"]
+   
 
-    init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // Custom initialization
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // #pragma mark - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func showQuestion(AnyObject) {
+        self.currentQuestionIndex++
+        if(self.currentQuestionIndex == self.questions.count) {
+            self.currentQuestionIndex = 0
+        }
+        
+        let question = self.questions[self.currentQuestionIndex]
+        self.questionLabel.text = question
+        self.answerLabel.text = "???"
     }
-    */
-
+    
+    @IBAction func showAnswer(AnyObject) {
+        let answer = self.answers[self.currentQuestionIndex]
+        self.answerLabel.text = answer
+        
+    }
 }
